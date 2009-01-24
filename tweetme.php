@@ -12,9 +12,10 @@ Author URI: http://whomwah.com
 function post_to_twitter($tweet) {
   $method = "statuses/update.json?status=".urlencode(stripslashes($tweet));
 
-  if (strlen($tweet) > 140)
+  if (strlen($tweet) > 140) {
     error_log("Tweet too long, Max 140 chars!", 0);
     return false;
+  }
 
   tweetme_twitter_api_call($method);
 }
