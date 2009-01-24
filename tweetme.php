@@ -21,7 +21,7 @@ function post_to_twitter($tweet) {
 
 function tweetme_twitter_api_call($method) {
   $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, "http://ttttwitter.com/$method");
+  curl_setopt($ch, CURLOPT_URL, "http://twitter.com/$method");
   curl_setopt($ch, CURLOPT_VERBOSE, 1);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
