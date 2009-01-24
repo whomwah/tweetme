@@ -44,15 +44,15 @@ function tweetme_twitter_api_call($method) {
 }
 
 function tweetme($post_ID)  {
+
   if (!add_post_meta($post_ID, 'has_tweeted', '1', true)) {
     return $post_ID;
   }
 
-  $link = tweetme_bitly_link($post_ID);
 	$text = str_replace( '#title#', $_POST['post_title'], get_option('tweetme-text'));
 
   if (preg_match("/\#link\#/i", $text))
-	  $text = str_replace( '#link#', tweetme_bitly_link($link), $text);
+	  $text = str_replace( '#link#', tweetme_bitly_link($post_ID), $text);
 	
 	if ($text != '')
 		post_to_twitter($text);
@@ -62,7 +62,7 @@ function tweetme($post_ID)  {
 
 function tweetme_bitly_link($id) {
   $link = get_permalink($id);
-	return file_get_contents('http://bit.ly/api?url=' . urlencode($link));
+	return file_get_contents('http://bit.ly/api?url=' . $link);
 }
 
 function tweetme_management() {
