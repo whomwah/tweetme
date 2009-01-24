@@ -5,7 +5,7 @@ A Wordpress plugin that posts a tweet to Twitter when you publish a blog post
 
 INSTALLATION:
 
-Once you downloaded all files create a folder called 'tweetme' in your plugins folder. 
+Once you downloaded the file, create a folder called 'tweetme' in your plugins folder. 
 Then place the tweetme.php file in that directory so it looks something like this:
 
   wp-content/plugins/
