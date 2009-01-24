@@ -1,0 +1,11 @@
+TweetMe
+=======
+
+A Wordpress plugin that posts a tweet to Twitter when you publish a blog post
+
+INSTALLATION:
+
+ cd wordpress/wp-content/plugins/
+ git clone git://github.com/whomwah/tweetme.git 
+
+Now go to your admin panel and activate it.
