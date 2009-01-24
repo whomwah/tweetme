@@ -2,7 +2,7 @@
 /*
 Plugin Name: TweetMe
 Plugin URI: http://whomwah.github.com/tweetme/ 
-Description: TweetMe updates your <a href="http://twitter.com">Twitter</a> feed when you publish a new post. 
+Description: TweetMe posts a tweet to <a href="http://twitter.com">Twitter</a> when you publish a blog post
 Version: 1.0
 Author: Duncan Robertson 
 Author URI: http://whomwah.com
