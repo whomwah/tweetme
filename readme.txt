@@ -4,7 +4,7 @@ Donate Link: http://pledgie.org/campaigns/2699
 Tags: twitter, simple, tweet, post
 Requires at least: 2.6
 Tested up to: 2.7
-Stable tag: 1.0 
+Stable tag: 1.1 
 
 A Wordpress plugin that posts a tweet to Twitter when you publish a blog post
 
@@ -12,11 +12,11 @@ A Wordpress plugin that posts a tweet to Twitter when you publish a blog post
 
 TweetMe is a simple Wordpress Plugin that posts a tweet to [Twitter](http://twitter.com/) when you publish a blog post. You decide what format the tweet takes by modifying sample string like below. You have access to 2 special tags **#title#** and **#link#** which are replaced with the post title and the condensed link respectivly, so in the example below:
 
- `New Blog Post: #title# #link#`
+`New Blog Post: #title# #link#`
 
 would be sent to Twitter as:
 
- `New Blog Post: My wondeful website http://bit.ly/3QFFTt`
+`New Blog Post: My wondeful website http://bit.ly/3QFFTt`
 
 That's it, once set you can carry on writing posts as usual, and when you publish it, TweetMe will twitter about it. The link is shortened to around 18 characters using the [bit.ly](http://bit.ly/ "shorten the length of an URL") service. TweetMe adds a custom field to your post called has_tweeted. You can remove this field to allow the post to be tweeted again.
 
@@ -36,7 +36,7 @@ No, the conditions it will tweet in are:
 
 = Can I contribute to TweetMe? =
 
-Sure, the code lives at the [TweetMe github porject page](http://whomwah.github.com/tweetme "TweetMe via Github"). You can download or fork it there.
+Sure, the code lives at the [TweetMe github project page](http://whomwah.github.com/tweetme "TweetMe via Github"). You can download or fork it there.
 
 == Installation ==
 

@@ -3,20 +3,21 @@
 Plugin Name: TweetMe
 Plugin URI: http://whomwah.github.com/tweetme/ 
 Description: TweetMe posts a tweet to <a href="http://twitter.com">Twitter</a> when you publish a blog post
-Version: 1.0
+Version: 1.1
 Author: Duncan Robertson 
 Author URI: http://whomwah.com
 */
 
 
 function post_to_twitter($tweet) {
-  $method = "statuses/update.json?status=".urlencode(stripslashes($tweet));
-
-  if (strlen($tweet) > 140) {
-    error_log("Tweet too long, Max 140 chars!", 0);
+  if ($tweet == '') {
+    error_log("Nothing to Tweet!", 0);
     return false;
   }
 
+  $method = "statuses/update.json?status=".urlencode(stripslashes($tweet));
+
+  error_log("Posting: ".$tweet, 0);
   tweetme_twitter_api_call($method);
 }
 
@@ -49,13 +50,23 @@ function tweetme($post_ID)  {
     return $post_ID;
   }
 
-	$text = str_replace( '#title#', $_POST['post_title'], get_option('tweetme-text'));
+  $post = get_post($post_ID); 
+  $text = get_option('tweetme-text');
+  $title = trim($post->post_title);
+  $link = tweetme_bitly_link($post_ID);
+  
+  if (preg_match("/\#title\#/i", $text))
+	  $text = str_replace( '#title#', $title, $text);
 
   if (preg_match("/\#link\#/i", $text))
-	  $text = str_replace( '#link#', tweetme_bitly_link($post_ID), $text);
+	  $text = str_replace( '#link#', $link, $text);
+
+  if (strlen($text) > 140) {
+    error_log("Tweet too long, Squashing tweet!", 0);
+    $text = 'Blog Post: '.$link;
+  }
 	
-	if ($text != '')
-		post_to_twitter($text);
+	post_to_twitter($text);
   
   return $post_ID;
 }
