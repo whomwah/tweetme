@@ -1,0 +1,8 @@
+*1.1.0* (1st Feb, 2009)
+
+* fixed bug with #title# sometimes not appearing [Duncan Robertson]
+* if tweet is > 140 chars default text and link shown only
+
+*1.0.0* (1st Feb, 2009)
+
+* initial release [Duncan Robertson]
