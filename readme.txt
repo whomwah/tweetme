@@ -20,6 +20,8 @@ would be sent to Twitter as:
 
 That's it, once set you can carry on writing posts as usual, and when you publish it, TweetMe will twitter about it. The link is shortened to around 18 characters using the [bit.ly](http://bit.ly/ "shorten the length of an URL") service. TweetMe adds a custom field to your post called has_tweeted. You can remove this field to allow the post to be tweeted again.
 
+[Changelog](http://github.com/whomwah/tweetme/raw/1.1/CHANGELOG "View the release changelog")
+
 == Frequently Asked Questions ==
 
 = Does it work with earlier versions of Wordpress? =
