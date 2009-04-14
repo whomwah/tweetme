@@ -1,3 +1,7 @@
+*1.2.0* (14th April, 2009)
+
+* Use a localised short url that conforms to rev=canonical if it exists
+
 *1.1.0* (1st Feb, 2009)
 
 * fixed bug with #title# sometimes not appearing [Duncan Robertson]

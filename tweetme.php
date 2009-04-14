@@ -3,7 +3,7 @@
 Plugin Name: TweetMe
 Plugin URI: http://whomwah.github.com/tweetme/ 
 Description: TweetMe posts a tweet to <a href="http://twitter.com">Twitter</a> when you publish a blog post
-Version: 1.1
+Version: 1.2
 Author: Duncan Robertson 
 Author URI: http://whomwah.com
 */
@@ -72,8 +72,12 @@ function tweetme($post_ID)  {
 }
 
 function tweetme_bitly_link($id) {
-  $link = get_permalink($id);
-	return file_get_contents('http://bit.ly/api?url=' . $link);
+  if (function_exists('revcanonical_shorten') && $link = revcanonical_shorten($id)) {
+    return $link;
+  } else {
+    $link = get_permalink($id);
+	  return file_get_contents('http://bit.ly/api?url=' . $link);
+  }
 }
 
 function tweetme_management() {
@@ -100,13 +104,13 @@ function tweetme_management() {
 <div class="wrap">
   <h2>TweetMe Settings</h2>
 
-  <p>The information below decides how and what actually gets posted to your <a href="http://twitter.com">Twitter</a> feed. The link to the post is shortened to around 18 characters using the <a href="http://bit.ly/app/tools">bit.ly</a> service. Note that Twitter only allows a maximum of 140 characters per tweet. TweetMe adds a custom field to your post called <em>has_tweeted</em>. You can remove this field to allow the post to be tweeted again.</p>
+  <p>The information below decides how and what actually gets posted to your <a href="http://twitter.com">Twitter</a> feed. <?php if (function_exists('revcanonical_shorten') && $l = revcanonical_shorten(100)) { ?>It's great that you have the <a href="http://wordpress.org/extend/plugins/revcanonical/">revcanonical plugin</a> installed, so I'll be using your shortened urls<? } else { ?>The link to the post is shortened to around 18 characters using the <a href="http://bit.ly/app/tools">bit.ly</a> service<?php } ?>. Note that Twitter only allows a maximum of 140 characters per tweet. TweetMe adds a custom field to your post called <em>has_tweeted</em>. You can remove this field to allow the post to be tweeted again.</p>
 
   <h3>Tweet Configuration</h3>
 	<form method="post">
 	<p><label for="tweetme-text">The text that makes up the tweet ( <span class="setting-description">use <strong>#title#</strong> as placeholder for the posts title, and <strong>#link#</strong> for the generated link</span> )</label></p>
 	<input type="text" name="tweetme-text" id="tweetme-text" class="regular-text" size="50" maxlength="122" value="<?php echo(get_option('tweetme-text')) ?>" />
-   <p>An Example: <span class="setting-description">New Blog Post: My wondeful website http://bit.ly/3QFFTt</span></p>
+   <p>An Example: <span class="setting-description">New Blog Post: My wondeful website <?php if ($l) { echo $l; } else { echo 'http://bit.ly/3QFFTt'; } ?></span></p>
 
 	<input type="hidden" name="submit-type" value="options">
   <p class="submit"><input type="submit" name="Submit" class="button-primary" value="Save Changes" /></p>
