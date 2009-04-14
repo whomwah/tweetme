@@ -20,13 +20,13 @@ would be sent to Twitter as:
 
 That's it, once set you can carry on writing posts as usual, and when you publish it, TweetMe will twitter about it. The link is shortened to around 18 characters using the [bit.ly](http://bit.ly/ "shorten the length of an URL") service. If however you have the <a href="http://wordpress.org/extend/plugins/revcanonical/">revcanonical</a> plugin then it will use the local short url instead. TweetMe adds a custom field to your post called has_tweeted. You can remove this field to allow the post to be tweeted again.
 
-[Changelog](http://github.com/whomwah/tweetme/raw/1.1/CHANGELOG "View the release changelog")
+[Changelog](http://github.com/whomwah/tweetme/raw/master/CHANGELOG "View the release changelog")
 
 == Frequently Asked Questions ==
 
 = Does it work with earlier versions of Wordpress? =
 
-Not sure is the simple answer, I run 2.7. If it works with ealier versions, please let me know via [Whomwah.com](http://whomwah.com).
+Not sure is the simple answer, I run 2.7.2 currently. If it works with ealier versions, please let me know via [Whomwah.com](http://whomwah.com).
 
 = If I update a blog post that is already published, will it tweet again? =
 
