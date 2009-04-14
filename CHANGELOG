@@ -1,3 +1,7 @@
+*1.2.1* (14th April, 2009)
+
+* fixed auth bug
+
 *1.2.0* (14th April, 2009)
 
 * Use a localised short url that conforms to rev=canonical if it exists

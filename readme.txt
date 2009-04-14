@@ -3,8 +3,8 @@ Contributors: whomwah
 Donate Link: http://pledgie.org/campaigns/2699
 Tags: twitter, simple, tweet, post
 Requires at least: 2.6
-Tested up to: 2.7
-Stable tag: 1.2 
+Tested up to: 2.7.2
+Stable tag: 1.2.1 
 
 A Wordpress plugin that posts a tweet to Twitter when you publish a blog post
 

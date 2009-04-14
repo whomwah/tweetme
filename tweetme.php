@@ -3,7 +3,7 @@
 Plugin Name: TweetMe
 Plugin URI: http://whomwah.github.com/tweetme/ 
 Description: TweetMe posts a tweet to <a href="http://twitter.com">Twitter</a> when you publish a blog post
-Version: 1.2
+Version: 1.2.1
 Author: Duncan Robertson 
 Author URI: http://whomwah.com
 */
@@ -23,13 +23,15 @@ function post_to_twitter($tweet) {
 
 function tweetme_twitter_api_call($method) {
   $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, "http://twitter.com/$method");
-  curl_setopt($ch, CURLOPT_VERBOSE, 1);
+
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+  curl_setopt($ch, CURLOPT_HEADER, false);
+  curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect:'));
-  curl_setopt($ch, CURLOPT_USERPWD, base64_decode(get_option('twitteruser_encrypted')));
+  $up = base64_decode(get_option('twitteruser_encrypted'));
+  curl_setopt($ch, CURLOPT_USERPWD, $up);
   curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_URL, "http://twitter.com/$method");
 
   $result = curl_exec($ch);
   $resultArray = curl_getinfo($ch);
