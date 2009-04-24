@@ -3,7 +3,7 @@
 Plugin Name: TweetMe
 Plugin URI: http://whomwah.github.com/tweetme/ 
 Description: TweetMe posts a tweet to <a href="http://twitter.com">Twitter</a> when you publish a blog post
-Version: 1.2.2
+Version: 1.2.3
 Author: Duncan Robertson 
 Author URI: http://whomwah.com
 */
@@ -18,10 +18,10 @@ function post_to_twitter($tweet) {
   $method = "statuses/update.json?status=".urlencode(stripslashes($tweet));
 
   error_log("Posting: ".$tweet, 0);
-  tweetme_twitter_api_call($method);
+  tweetme_twitter_api_call($method, true);
 }
 
-function tweetme_twitter_api_call($method) {
+function tweetme_twitter_api_call($method, $use_post = NULL) {
   $ch = curl_init();
 
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
@@ -33,7 +33,11 @@ function tweetme_twitter_api_call($method) {
   curl_setopt($ch, CURLOPT_USERPWD, $up);
   curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
   curl_setopt($ch, CURLOPT_URL, "http://twitter.com/$method");
-  curl_setopt($ch, CURLOPT_POST, 1);
+
+  if ($use_post) {
+    curl_setopt($ch, CURLOPT_POST, 1);
+    error_log("Using post", 0);
+  }
 
   $result = curl_exec($ch);
   $resultArray = curl_getinfo($ch);
@@ -44,7 +48,7 @@ function tweetme_twitter_api_call($method) {
     return true;
   } else {
     error_log("Error: ".$resultArray['http_code'], 0);
-    error_log("xMessage: ".$result, 0);
+    error_log("Message: ".$result, 0);
     return false;
   }
 }
